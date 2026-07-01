@@ -1,0 +1,371 @@
+/* =============================================================================
+   RESPONSIVE STYLES
+   Simon Adhikari Portfolio — Swiss Style
+   Breakpoints: 1024px (desktop nav), 980px (tablet), 720px (mobile), 460px (small)
+   ============================================================================= */
+
+
+/* =============================================================================
+   1. ≥ 1024px — Desktop: Show full nav links, hide hamburger
+   ============================================================================= */
+@media (min-width: 1024px) {
+  .nav__links {
+    display: flex;
+  }
+
+  /* Hide hamburger and mobile dropdown on desktop */
+  .nav__toggle,
+  .nav__menu {
+    display: none !important;
+  }
+}
+
+
+/* =============================================================================
+   2. ≤ 1024px — Large tablet: Hamburger visible, links hidden
+   ============================================================================= */
+@media (max-width: 1024px) {
+  .nav__links {
+    display: none;
+  }
+}
+
+
+/* =============================================================================
+   3. ≤ 980px — Tablet: Collapse 12-col layout to simpler spans
+   ============================================================================= */
+@media (max-width: 980px) {
+  :root {
+    --gutter: 16px;
+  }
+
+  .brand {
+    grid-column: 1 / span 8;
+  }
+
+  /* Hero adjustments */
+  .hero h1 {
+    grid-column: 1 / -1;
+  }
+
+  .hero__kicker,
+  .hero__subtitle,
+  .hero__actions {
+    grid-column: 1 / span 8;
+  }
+
+  .hero__index {
+    grid-column: 9 / -1;
+    grid-row: auto;
+  }
+
+  /* Section headings span full width */
+  .section-heading,
+  .split-layout .section-heading,
+  .code-card {
+    grid-column: 1 / -1;
+  }
+
+  .split-layout .section-heading {
+    position: static; /* Disable sticky on tablet */
+  }
+
+  .education-grid,
+  .skill-groups {
+    grid-column: 1 / -1;
+  }
+
+  .section-heading--between > div {
+    grid-column: 1 / span 8;
+  }
+
+  /* Project cards: 2-up grid */
+  .project-card {
+    grid-column: span 6;
+  }
+
+  .contact-panel > div {
+    grid-column: 1 / span 9;
+  }
+
+  /* Info panels: collapse columns */
+  .info-panel h3 {
+    grid-column: 1 / span 2;
+  }
+
+  .info-panel > p,
+  .info-panel > a,
+  .info-panel > div {
+    grid-column: 3 / -1;
+  }
+
+  /* Skill groups */
+  .skill-group h3 {
+    grid-column: 1 / span 2;
+  }
+
+  .tag-list {
+    grid-column: 3 / -1;
+  }
+}
+
+
+/* =============================================================================
+   4. ≤ 720px — Mobile: Single-column layout
+   ============================================================================= */
+@media (max-width: 720px) {
+  :root {
+    --section-pad: var(--space-10);
+  }
+
+  .container {
+    width: min(calc(100% - var(--space-4)), var(--container));
+  }
+
+  /* Flatten all 12-col grids to 1 column */
+  .grid-12,
+  .section-heading--between,
+  .project-grid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: auto;
+  }
+
+  .hero__content {
+    min-height: auto;
+    padding: var(--space-10) 0 var(--space-6);
+    row-gap: var(--space-3);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.75rem, 14vw, 4rem);
+  }
+
+  .hero__kicker,
+  .hero h1,
+  .hero__subtitle,
+  .hero__actions {
+    grid-column: 1 / -1;
+  }
+
+  .hero__subtitle {
+    font-size: 1.125rem;
+  }
+
+  .hero__index {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    border-top: var(--border-accent);
+    border-left: none;
+    margin-top: var(--space-4);
+    padding-top: var(--space-2);
+  }
+
+  .hero__index .index-number {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    margin-right: var(--space-2);
+  }
+
+  .hero__index .index-title,
+  .hero__index .index-subtitle {
+    border-top: none;
+    border-left: 1px solid var(--color-line-light);
+    padding: 0 var(--space-2);
+  }
+
+  /* Stats strip: stay 3-column down to this breakpoint */
+  .stats-strip {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: var(--space-6);
+  }
+
+  /* All section content to full-width */
+  .brand,
+  .section-heading,
+  .section-heading--between,
+  .section-heading--between > div,
+  .split-layout .section-heading,
+  .code-card,
+  .education-grid,
+  .skill-groups,
+  .project-card,
+  .contact-panel > div,
+  .table-wrapper {
+    grid-column: 1 / -1;
+  }
+
+  .split-layout .section-heading {
+    position: static;
+  }
+
+  /* Flatten info panel to single column */
+  .education-grid,
+  .skill-groups,
+  .info-panel,
+  .skill-group {
+    display: block;
+  }
+
+  .info-panel {
+    padding: var(--space-3) 0;
+    row-gap: var(--space-2);
+  }
+
+  .info-panel h3 {
+    margin-bottom: var(--space-1);
+  }
+
+  .info-panel p,
+  .info-panel a {
+    grid-column: auto;
+  }
+
+  .skill-group {
+    padding: var(--space-3) 0;
+    border-bottom: var(--border-light);
+  }
+
+  .skill-group h3 {
+    margin-bottom: var(--space-2);
+  }
+
+  .tag-list {
+    grid-column: auto;
+  }
+
+  /* Project cards: single-column */
+  .project-card {
+    grid-column: 1 / -1;
+    min-height: auto;
+  }
+
+  /* CTAs on mobile: full-width */
+  .hero__actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero__actions .button::after {
+    display: none;
+  }
+
+  /* Contact */
+  .contact-panel {
+    align-items: start;
+  }
+
+  /* Footer stacks vertically */
+  .footer-layout {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .footer-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}
+
+
+/* =============================================================================
+   5. ≤ 460px — Small mobile: Tighten stats strip
+   ============================================================================= */
+@media (max-width: 460px) {
+  /* Stats strip: collapse to single column on very small screens */
+  .stats-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-strip li {
+    border-right: none;
+    border-bottom: var(--border-light);
+    padding: var(--space-3);
+  }
+
+  .stats-strip li:last-child {
+    border-bottom: none;
+  }
+
+  /* Brand name truncation */
+  .brand span:not(.brand__mark) {
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Reduce modal padding */
+  .modal__dialog {
+    padding: var(--space-3);
+  }
+
+  /* Tighter section headings */
+  h2 {
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
+  }
+}
+
+
+/* =============================================================================
+   6. Print Styles
+   ============================================================================= */
+@media print {
+  /* Remove interactive elements */
+  .site-header,
+  .nav__toggle,
+  .nav__menu,
+  .nav__links,
+  .skip-link,
+  .hero__actions,
+  .project-card__button,
+  .modal {
+    display: none !important;
+  }
+
+  /* Reset backgrounds to white */
+  body,
+  .section,
+  .section--surface,
+  .hero,
+  .project-card,
+  .code-card {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Remove borders that don't print well */
+  .site-footer {
+    background: #fff !important;
+  }
+
+  .site-footer p,
+  .site-footer a {
+    color: #333 !important;
+  }
+
+  /* Ensure all content is visible */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Page breaks */
+  section {
+    page-break-before: auto;
+    break-inside: avoid;
+  }
+
+  .project-card {
+    break-inside: avoid;
+  }
+}

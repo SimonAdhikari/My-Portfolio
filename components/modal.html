@@ -1,0 +1,47 @@
+<dialog class="modal" id="project-modal" aria-labelledby="modal-title" aria-modal="true">
+  <div class="modal__dialog">
+
+    <!-- Header: type label + close button -->
+    <div class="modal__header">
+      <div class="modal__header-content">
+        <p class="eyebrow" data-modal-type></p>
+        <h2 id="modal-title" data-modal-title></h2>
+      </div>
+      <form method="dialog">
+        <!-- autofocus ensures keyboard focus lands here when modal opens -->
+        <button
+          class="modal__close"
+          type="submit"
+          aria-label="Close project details"
+          autofocus
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Body: description -->
+    <div class="modal__body">
+      <p data-modal-description class="text-lead"></p>
+    </div>
+
+    <!-- Tags -->
+    <div class="tag-list mt-space-4" data-modal-tags aria-label="Technologies used"></div>
+
+    <!-- Footer: action links -->
+    <div class="modal__footer">
+      <a
+        class="button button--outline button--sm"
+        href="#"
+        data-modal-link
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="View project on GitHub"
+      >View on GitHub</a>
+    </div>
+
+  </div>
+</dialog>

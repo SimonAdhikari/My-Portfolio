@@ -1,0 +1,17 @@
+{
+  "name": "Simon Adhikari — Cybersecurity Portfolio",
+  "short_name": "Simon Adhikari",
+  "description": "A Swiss-style portfolio for security-minded code, network fundamentals, and practical learning projects.",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "background_color": "#f5f5f1",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
