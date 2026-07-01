@@ -196,35 +196,48 @@
 
 
 /* =============================================================================
-   4. Info Panel Grid
-   (Used by Skills, Experience, Education, Certifications, Achievements, Blog,
-    Testimonials, Workflow sections)
+   4. Bento Grid (Profile & Skills)
    ============================================================================= */
-.education-grid,
-.skill-groups {
+.bento-grid {
   display: grid;
-  grid-column: 7 / -1;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  row-gap: 0;
-  border-top: var(--border);
-}
-
-/* Info Panel — horizontal layout with h3 left / content right */
-.info-panel {
   grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  align-items: baseline;
-  border-bottom: var(--border-light);
-  padding: var(--space-4) 0;
-  transition: background var(--transition-fast);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
 }
 
-/* Subtle hover on panels */
-.info-panel:hover {
-  background: transparent;
+.bento-card {
+  grid-column: span 6;
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  padding: var(--space-5);
+  border: var(--border);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base);
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  background: var(--color-surface-hover);
+}
+
+.bento-card--large {
+  grid-column: 1 / -1;
+}
+
+.bento-card h3 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-2);
+}
+
+.bento-card p {
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+.bento-card__meta {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-line);
 }
 
 .info-panel h3 {
@@ -327,15 +340,16 @@ blockquote footer {
 .project-card__meta span {
   display: inline-flex;
   align-items: center;
-  min-height: 28px;
+  min-height: 32px;
   padding: 0 var(--space-2);
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--border-radius);
+  background: transparent;
   color: var(--color-ink);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
   transition: background var(--transition-fast), color var(--transition-fast);
 }
 
@@ -360,22 +374,25 @@ blockquote footer {
 /* Individual project card */
 .project-card {
   display: flex;
-  grid-column: span 4;
+  grid-column: span 6; /* 2-up on desktop instead of 3-up */
   flex-direction: column;
   border: var(--border);
+  border-radius: var(--border-radius);
   background: var(--color-paper);
-  padding: var(--space-4);
-  /* Smooth transform on hover — no layout shift */
+  padding: var(--space-5);
+  /* Smooth transform on hover */
   transition:
     transform var(--transition-base),
-    box-shadow var(--transition-base);
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
   cursor: default;
 }
 
-/* Hard-offset shadow appears on hover — Swiss structural aesthetic */
+/* Premium soft shadow on hover */
 .project-card:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 5px 5px 0 var(--color-accent);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-line-strong);
 }
 
 /* Surface projects live on surface sections */
@@ -519,12 +536,20 @@ blockquote footer {
    8. Contact Section
    ============================================================================= */
 .contact-panel {
-  align-items: start;
+  align-items: center;
   row-gap: var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  padding: var(--space-8);
+  border: var(--border);
+  text-align: center;
 }
 
 .contact-panel > div {
-  grid-column: 1 / span 7;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .contact-panel h2 {
@@ -541,16 +566,19 @@ blockquote footer {
    ============================================================================= */
 .modal {
   padding: 0;
-  border: var(--border);
-  border-top: 6px solid var(--color-accent);
+  border: var(--border-strong);
+  border-radius: var(--border-radius);
   background: var(--color-paper);
-  max-width: 600px;
+  max-width: 680px;
   width: calc(100% - var(--space-6));
   margin: auto;
+  box-shadow: var(--shadow-lg);
 }
 
 .modal::backdrop {
-  background: rgba(10, 10, 10, 0.85);
+  background: var(--color-overlay);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .modal__dialog {

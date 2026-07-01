@@ -12,15 +12,16 @@
    2. Design Tokens
    ============================================================================= */
 :root {
-  /* ── Palette ───────────────────────────────────────────────────────────────── */
-  --color-ink:            #0a0a0a;   /* Near-black text / borders                */
-  --color-ink-secondary:  #333333;   /* Slightly softer headings                 */
-  --color-muted:          #6b6b6b;   /* Body copy, captions                      */
-  --color-paper:          #f5f5f1;   /* Page background                          */
-  --color-surface:        #e8e8e4;   /* Alternate section background             */
-  --color-surface-hover:  #dededb;   /* Table row hover, subtle states           */
-  --color-line:           #0a0a0a;   /* Border / rule color                      */
-  --color-line-light:     #d0d0cc;   /* Lightweight dividers                     */
+  /* ── Light Palette (Premium Minimalist) ────────────────────────────────────── */
+  --color-ink:            #111110;   /* Softer near-black                        */
+  --color-ink-secondary:  #4a4a46;   /* Muted text                               */
+  --color-muted:          #686864;   /* Body copy, captions                      */
+  --color-paper:          #fdfdfc;   /* Cleaner page background                  */
+  --color-surface:        #f4f4f2;   /* Alternate section background             */
+  --color-surface-hover:  #ebebea;   /* Hover states                             */
+  --color-line:           #e2e2df;   /* Light, elegant dividers                  */
+  --color-line-strong:    #111110;   /* Strong borders                           */
+  --color-overlay:        rgba(253, 253, 252, 0.85); /* Glassmorphism bg         */
 
   /* ── Accent ────────────────────────────────────────────────────────────────── */
   --color-accent:         #e53935;   /* Swiss red — used sparingly               */
@@ -31,29 +32,29 @@
   --font-sans:  "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono:  "IBM Plex Mono", "Cascadia Code", Consolas, monospace;
 
-  /* ── Type Scale (strict modular ratio ~1.25) ────────────────────────────────  */
-  --text-xs:   0.75rem;    /* 12px — eyebrows, labels                           */
-  --text-sm:   0.875rem;   /* 14px — nav, buttons, tags                         */
-  --text-base: 1rem;       /* 16px — body                                        */
-  --text-lg:   1.125rem;   /* 18px — lead / intro                               */
-  --text-xl:   1.25rem;    /* 20px — h3                                          */
-  --text-2xl:  1.5rem;     /* 24px                                               */
-  --text-3xl:  2rem;       /* 32px — h2 floor                                   */
+  /* ── Type Scale (fluid) ────────────────────────────────────────────────────── */
+  --text-xs:   0.75rem;    
+  --text-sm:   0.875rem;   
+  --text-base: 1rem;       
+  --text-lg:   1.125rem;   
+  --text-xl:   1.25rem;    
+  --text-2xl:  1.5rem;     
+  --text-3xl:  2rem;       
 
   /* ── Line Heights ──────────────────────────────────────────────────────────── */
-  --lh-tight:  1.05;   /* Display headings                                       */
-  --lh-snug:   1.2;    /* Sub-headings                                           */
-  --lh-normal: 1.5;    /* Body copy                                              */
-  --lh-relaxed:1.7;    /* Long-form paragraphs, code                             */
+  --lh-tight:  1.1;    
+  --lh-snug:   1.3;    
+  --lh-normal: 1.6;    
+  --lh-relaxed:1.75;   
 
   /* ── Letter Spacing ────────────────────────────────────────────────────────── */
-  --ls-tight:  -0.03em;
-  --ls-display:-0.04em;
+  --ls-tight:  -0.02em;
+  --ls-display:-0.03em;
   --ls-normal:  0;
   --ls-wide:    0.05em;
   --ls-wider:   0.1em;
 
-  /* ── 8px Spacing System ─────────────────────────────────────────────────────  */
+  /* ── Spacing System ────────────────────────────────────────────────────────── */
   --space-1:  8px;
   --space-2:  16px;
   --space-3:  24px;
@@ -72,18 +73,38 @@
   --section-pad:   clamp(var(--space-10), 10vw, var(--space-16));
   --nav-height:    72px;
 
-  /* ── Borders ───────────────────────────────────────────────────────────────── */
-  --border-width:  2px;
+  /* ── Borders & Shadows ─────────────────────────────────────────────────────── */
+  --border-radius: 12px;
+  --border-width:  1px;
   --border:        var(--border-width) solid var(--color-line);
-  --border-light:  1px solid var(--color-line-light);
+  --border-strong: 2px solid var(--color-line-strong);
   --border-accent: 4px solid var(--color-accent);
+  --shadow-sm:     0 2px 8px rgba(0,0,0,0.04);
+  --shadow-md:     0 8px 24px rgba(0,0,0,0.06);
+  --shadow-lg:     0 16px 48px rgba(0,0,0,0.08);
 
   /* ── Transitions ───────────────────────────────────────────────────────────── */
   --ease-out:      cubic-bezier(0.25, 1, 0.5, 1);
-  --ease-in-out:   cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
   --transition-fast:  150ms var(--ease-out);
-  --transition-base:  250ms var(--ease-out);
-  --transition-slow:  400ms var(--ease-out);
+  --transition-base:  300ms var(--ease-out);
+  --transition-slow:  500ms var(--ease-in-out);
+}
+
+/* ── Dark Palette ──────────────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --color-ink:            #fdfdfc;
+  --color-ink-secondary:  #b3b3af;
+  --color-muted:          #8f8f8b;
+  --color-paper:          #0a0a0a;
+  --color-surface:        #141414;
+  --color-surface-hover:  #1e1e1d;
+  --color-line:           #2a2a28;
+  --color-line-strong:    #4a4a46;
+  --color-overlay:        rgba(10, 10, 10, 0.85);
+  --shadow-sm:            0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md:            0 8px 24px rgba(0,0,0,0.5);
+  --shadow-lg:            0 16px 48px rgba(0,0,0,0.6);
 }
 
 
@@ -114,6 +135,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 /* Lock scroll when nav or modal is open */
@@ -296,8 +318,10 @@ a:focus:not(:focus-visible) {
   top: 0;
   z-index: 100;
   border-bottom: var(--border);
-  /* Solid near-opaque background — avoids glassmorphism while still showing scroll context */
-  background: rgba(245, 245, 241, 0.96);
+  background: var(--color-overlay);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .nav {
@@ -461,7 +485,7 @@ body.nav-open .nav__menu {
 .nav__menu a:hover,
 .nav__menu a.is-active {
   color: var(--color-accent);
-  background: var(--color-accent-subtle);
+  background: var(--color-surface);
 }
 
 
@@ -505,7 +529,7 @@ input,
 textarea,
 select {
   font: inherit;
-  border-radius: 0;
+  border-radius: var(--border-radius);
 }
 
 button {
@@ -521,13 +545,12 @@ button {
   padding: 0 var(--space-4);
   font-family: var(--font-sans);
   font-size: var(--text-sm);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: var(--ls-wide);
   text-decoration: none;
-  text-transform: uppercase;
-  border: var(--border);
-  transition: background var(--transition-base), color var(--transition-base),
-              border-color var(--transition-base), transform var(--transition-fast);
+  border-radius: var(--border-radius);
+  border: var(--border-width) solid transparent;
+  transition: all var(--transition-base);
   white-space: nowrap;
 }
 
@@ -551,23 +574,24 @@ button {
 /* Outline: transparent with ink border */
 .button--outline {
   background: transparent;
+  border-color: var(--color-line-strong);
   color: var(--color-ink);
 }
 
 .button--outline:hover {
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: var(--color-surface);
+  border-color: var(--color-ink);
 }
 
 /* Ghost: minimal — for secondary actions */
 .button--ghost {
   background: transparent;
-  border-color: var(--color-line-light);
+  border-color: transparent;
   color: var(--color-muted);
 }
 
 .button--ghost:hover {
-  border-color: var(--color-ink);
+  background: var(--color-surface);
   color: var(--color-ink);
 }
 

@@ -34,6 +34,7 @@ async function loadComponents() {
   );
 
   setupNavigation();
+  setupThemeToggle();
   setCurrentYear();
 
   // Signal other scripts that the full DOM is ready
@@ -126,6 +127,30 @@ function setupNavigation() {
 function setCurrentYear() {
   document.querySelectorAll("[data-current-year]").forEach((el) => {
     el.textContent = new Date().getFullYear();
+  });
+}
+
+/** Theme toggle logic */
+function setupThemeToggle() {
+  const toggleBtn = document.getElementById('theme-toggle');
+  if (!toggleBtn) return;
+
+  const currentTheme = localStorage.getItem('theme') || 
+    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  
+  if (currentTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
   });
 }
 

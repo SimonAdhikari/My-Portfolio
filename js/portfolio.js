@@ -9,26 +9,34 @@ const PROJECTS = [
     title:       "Student Management System",
     type:        "C++ Console App",
     icon:        "C++",
-    description: "A basic record-management project for practicing data structures, control flow, and file-oriented thinking.",
-    tags:        ["C++", "Records", "CLI"],
-    link:        "https://github.com/simonadhikari",
-  },
-  {
-    title:       "Portfolio Website",
-    type:        "Web Project",
-    icon:        "WEB",
-    description: "A responsive personal site built with semantic HTML, modular CSS, and vanilla JavaScript components.",
-    tags:        ["HTML5", "CSS3", "JavaScript"],
+    description: "A high-performance, CLI-based record management system engineered in C++. Features memory-safe data structures and secure file I/O operations.",
+    tags:        ["C++", "Records", "CLI", "File I/O"],
     link:        "https://github.com/simonadhikari",
   },
   {
     title:       "Networking Notes App",
     type:        "Study Tool",
     icon:        "NET",
-    description: "A simple concept organizer for reviewing networking fundamentals and cybersecurity learning notes.",
-    tags:        ["Networking", "Study", "Security"],
+    description: "A specialized knowledge-base application designed for network analysis and security protocols. Built with vanilla JavaScript focusing on zero-dependency performance.",
+    tags:        ["Networking", "Security", "JavaScript"],
     link:        "https://github.com/simonadhikari",
   },
+  {
+    title:       "Terminal Chat UI",
+    type:        "C++ Interface",
+    icon:        "CLI",
+    description: "A secure, multi-threaded terminal chat interface utilizing robust socket programming for real-time encrypted communication.",
+    tags:        ["Sockets", "Threads", "C++"],
+    link:        "https://github.com/simonadhikari",
+  },
+  {
+    title:       "Basic Port Scanner",
+    type:        "Python Script",
+    icon:        "PY",
+    description: "A rapid, multithreaded port scanner written in Python for network auditing. Identifies open ports and banners efficiently.",
+    tags:        ["Python", "Network", "Audit"],
+    link:        "https://github.com/simonadhikari",
+  }
 ];
 
 /** Track the element that opened the modal, so we can restore focus on close */
@@ -165,8 +173,9 @@ function createTag(label) {
 function getFallbackCardMarkup() {
   return `
     <article class="project-card reveal" aria-labelledby="">
-      <p class="project-card__number" data-card-number aria-hidden="true"></p>
-      <div class="project-card__icon" data-card-icon aria-hidden="true"></div>
+      <div class="project-card__image" style="width: 100%; aspect-ratio: 16/9; background: var(--color-surface); border-radius: var(--border-radius); margin-bottom: var(--space-4); display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--color-line-light);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+      </div>
       <div class="project-card__body">
         <p class="project-card__type eyebrow" data-card-type></p>
         <h3 data-card-title></h3>

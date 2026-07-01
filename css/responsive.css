@@ -70,8 +70,7 @@
     position: static; /* Disable sticky on tablet */
   }
 
-  .education-grid,
-  .skill-groups {
+  .bento-grid {
     grid-column: 1 / -1;
   }
 
@@ -88,24 +87,8 @@
     grid-column: 1 / span 9;
   }
 
-  /* Info panels: collapse columns */
-  .info-panel h3 {
-    grid-column: 1 / span 2;
-  }
-
-  .info-panel > p,
-  .info-panel > a,
-  .info-panel > div {
-    grid-column: 3 / -1;
-  }
-
-  /* Skill groups */
-  .skill-group h3 {
-    grid-column: 1 / span 2;
-  }
-
-  .tag-list {
-    grid-column: 3 / -1;
+  .bento-card {
+    grid-column: 1 / -1;
   }
 }
 
@@ -194,8 +177,8 @@
   .section-heading--between > div,
   .split-layout .section-heading,
   .code-card,
-  .education-grid,
-  .skill-groups,
+  .bento-grid,
+  .bento-card,
   .project-card,
   .contact-panel > div,
   .table-wrapper {
@@ -206,35 +189,14 @@
     position: static;
   }
 
-  /* Flatten info panel to single column */
-  .education-grid,
-  .skill-groups,
-  .info-panel,
-  .skill-group {
-    display: block;
+  /* Flatten bento grid to single column */
+  .bento-grid {
+    display: flex;
+    flex-direction: column;
   }
 
-  .info-panel {
-    padding: var(--space-3) 0;
-    row-gap: var(--space-2);
-  }
-
-  .info-panel h3 {
-    margin-bottom: var(--space-1);
-  }
-
-  .info-panel p,
-  .info-panel a {
-    grid-column: auto;
-  }
-
-  .skill-group {
-    padding: var(--space-3) 0;
-    border-bottom: var(--border-light);
-  }
-
-  .skill-group h3 {
-    margin-bottom: var(--space-2);
+  .bento-card {
+    padding: var(--space-4);
   }
 
   .tag-list {
