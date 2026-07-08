@@ -5,9 +5,9 @@
 
 /** Map of data-component names to their HTML partial paths */
 const COMPONENT_MAP = {
-  navbar: "components/navbar.html",
-  footer: "components/footer.html",
-  modal:  "components/modal.html",
+  navbar: "/components/navbar.html",
+  footer: "/components/footer.html",
+  modal:  "/components/modal.html",
 };
 
 /**
