@@ -73,6 +73,27 @@ function setupNavigation() {
     }
   });
 
+  /** Hide header on scroll down, show on scroll up */
+  let lastScrollY = window.scrollY;
+  window.addEventListener("scroll", () => {
+    if (!header) return;
+    const currentScrollY = window.scrollY;
+    
+    // Don't hide if menu is open
+    if (document.body.classList.contains("nav-open")) {
+      return;
+    }
+
+    if (currentScrollY > lastScrollY && currentScrollY > header.offsetHeight) {
+      // Scrolling down
+      header.classList.add("is-hidden");
+    } else {
+      // Scrolling up
+      header.classList.remove("is-hidden");
+    }
+    lastScrollY = currentScrollY;
+  }, { passive: true });
+
   /** Active section link highlighting via IntersectionObserver */
   if (!sections.length) return;
 

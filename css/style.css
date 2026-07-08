@@ -319,7 +319,11 @@ a:focus:not(:focus-visible) {
   background: var(--color-overlay);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  transition: background-color var(--transition-base), border-color var(--transition-base);
+  transition: background-color var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
+}
+
+.site-header.is-hidden {
+  transform: translateY(-100%);
 }
 
 .nav {
