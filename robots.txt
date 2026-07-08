@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /components/
+Disallow: /404.html
+Disallow: /500.html
+Disallow: /README.md
 
 Sitemap: https://simonadhikari.com/sitemap.xml
