@@ -1,7 +1,13 @@
 /* =============================================================================
    RESPONSIVE STYLES
    Simon Adhikari Portfolio — Swiss Style
-   Breakpoints: 1024px (desktop nav), 980px (tablet), 720px (mobile), 460px (small)
+   Breakpoints (mobile-first where possible):
+     • xs:  ≤ 400px   — very small phones
+     • sm:  ≤ 540px   — small phones
+     • md:  ≤ 720px   — large phones / portrait tablets
+     • lg:  ≤ 980px   — landscape tablets
+     • xl:  ≤ 1240px  — small desktops / large tablets
+     • 2xl: ≥ 1280px  — large desktops
    ============================================================================= */
 
 
@@ -22,33 +28,93 @@
 
 
 /* =============================================================================
-   2. ≤ 1024px — Large tablet: Hamburger visible, links hidden
+   2. ≥ 1280px — Wide desktop: 3-column layouts for projects & FAQ
    ============================================================================= */
-@media (max-width: 1024px) {
-  .nav__links {
-    display: none;
+@media (min-width: 1280px) {
+  /* Projects: 3 cards per row on wide screens */
+  .project-card {
+    grid-column: span 4;
+  }
+
+  /* FAQ: 2×2 grid stays but with better proportions */
+  .faq-grid .bento-card {
+    grid-column: span 6;
+  }
+
+  /* Hero subtitle pushed slightly further for more breathing room */
+  .hero__subtitle {
+    grid-column: 7 / span 5;
+  }
+
+  .hero__actions {
+    grid-column: 7 / span 5;
   }
 }
 
 
 /* =============================================================================
-   3. ≤ 980px — Tablet: Collapse 12-col layout to simpler spans
+   3. ≤ 1240px — Small desktop / large landscape tablet
+   ============================================================================= */
+@media (max-width: 1240px) {
+  :root {
+    --container: 1100px;
+  }
+
+  /* Nav links a bit tighter */
+  .nav__links a {
+    padding: var(--space-1) 14px;
+  }
+}
+
+
+/* =============================================================================
+   4. ≤ 1024px — Large tablet: Hamburger visible, desktop links hidden
+   ============================================================================= */
+@media (max-width: 1024px) {
+  .nav__links {
+    display: none;
+  }
+
+  /* Brand spans more columns since links are hidden */
+  .brand {
+    grid-column: 1 / span 9;
+  }
+
+  /* Theme toggle and hamburger sit in last 3 columns */
+  .theme-toggle {
+    grid-column: 10;
+    justify-self: end;
+  }
+
+  .nav__toggle {
+    grid-column: 11 / span 2;
+    justify-self: end;
+  }
+}
+
+
+/* =============================================================================
+   5. ≤ 980px — Tablet: Collapse 12-col layout to simpler spans
    ============================================================================= */
 @media (max-width: 980px) {
   :root {
     --gutter: 16px;
+    --section-pad: clamp(var(--space-8), 8vw, var(--space-12));
   }
 
   .brand {
-    grid-column: 1 / span 8;
+    grid-column: 1 / span 7;
   }
 
-  /* Hero adjustments */
+  /* ── Hero ─────────────────────────────────────────────────────────────────── */
   .hero h1 {
     grid-column: 1 / -1;
   }
 
-  .hero__kicker,
+  .hero__kicker {
+    grid-column: 1 / span 8;
+  }
+
   .hero__subtitle,
   .hero__actions {
     grid-column: 1 / span 8;
@@ -57,9 +123,10 @@
   .hero__index {
     grid-column: 9 / -1;
     grid-row: auto;
+    align-self: start;
   }
 
-  /* Section headings span full width */
+  /* ── Section headings ─────────────────────────────────────────────────────── */
   .section-heading,
   .split-layout .section-heading,
   .code-card {
@@ -67,60 +134,100 @@
   }
 
   .split-layout .section-heading {
-    position: static; /* Disable sticky on tablet */
-  }
-
-  .bento-grid {
-    grid-column: 1 / -1;
+    position: static;
   }
 
   .section-heading--between > div {
     grid-column: 1 / span 8;
   }
 
-  /* Project cards: 2-up grid */
+  /* ── Bento grid ───────────────────────────────────────────────────────────── */
+  .bento-grid {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  /* Bento cards go 2-up (6 of 12 cols each) */
+  .bento-card {
+    grid-column: span 6;
+  }
+
+  .bento-card--large {
+    grid-column: 1 / -1;
+  }
+
+  /* ── Project cards: 2-up grid on tablet ──────────────────────────────────── */
   .project-card {
     grid-column: span 6;
   }
 
+  /* ── Contact ──────────────────────────────────────────────────────────────── */
   .contact-panel > div {
     grid-column: 1 / span 9;
   }
 
-  .bento-card {
-    grid-column: 1 / -1;
+  /* ── Table: allow horizontal scroll on tablet ────────────────────────────── */
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .archive-table {
+    min-width: 520px;
   }
 }
 
 
 /* =============================================================================
-   4. ≤ 720px — Mobile: Single-column layout
+   6. ≤ 720px — Mobile: Single-column layout
    ============================================================================= */
 @media (max-width: 720px) {
   :root {
-    --section-pad: var(--space-10);
+    --section-pad: clamp(var(--space-8), 12vw, var(--space-10));
+    --gutter: 12px;
   }
 
+  /* Slightly tighter container edges */
   .container {
     width: min(calc(100% - var(--space-4)), var(--container));
   }
 
-  /* Flatten all 12-col grids to 1 column */
+  /* ── Flatten all 12-col grids to 1 column ────────────────────────────────── */
   .grid-12,
-  .section-heading--between,
+  .section-heading--between {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+
+  /* Project grid keeps its own column control */
   .project-grid {
     grid-template-columns: 1fr;
     column-gap: 0;
   }
 
-  /* Hero */
+  /* ── Navigation ───────────────────────────────────────────────────────────── */
+  .brand {
+    grid-column: 1 / span 8;
+  }
+
+  .theme-toggle {
+    grid-column: 9 / span 2;
+    justify-self: end;
+  }
+
+  .nav__toggle {
+    grid-column: 11 / span 2;
+    justify-self: end;
+  }
+
+  /* ── Hero ─────────────────────────────────────────────────────────────────── */
   .hero {
     min-height: auto;
   }
 
   .hero__content {
     min-height: auto;
-    padding: var(--space-10) 0 var(--space-6);
+    padding: var(--space-8) 0 var(--space-6);
     row-gap: var(--space-3);
   }
 
@@ -136,14 +243,17 @@
   }
 
   .hero__subtitle {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 4vw, 1.125rem);
+    line-height: 1.6;
   }
 
+  /* Decorative index block: horizontal strip at bottom on mobile */
   .hero__index {
     grid-column: 1 / -1;
     grid-row: auto;
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
     gap: var(--space-3);
     border-top: var(--border-accent);
     border-left: none;
@@ -154,23 +264,29 @@
   .hero__index .index-number {
     font-size: 1.5rem;
     margin-bottom: 0;
-    margin-right: var(--space-2);
+    margin-right: var(--space-1);
   }
 
   .hero__index .index-title,
   .hero__index .index-subtitle {
     border-top: none;
-    border-left: 1px solid var(--color-line-light);
-    padding: 0 var(--space-2);
+    border-left: 1px solid var(--color-line);
+    padding: 2px var(--space-2);
   }
 
-  /* Stats strip: stay 3-column down to this breakpoint */
-  .stats-strip {
-    grid-template-columns: repeat(3, 1fr);
-    margin-top: var(--space-6);
+  /* ── CTA buttons: full-width stacked ─────────────────────────────────────── */
+  .hero__actions {
+    flex-direction: column;
+    gap: var(--space-2);
   }
 
-  /* All section content to full-width */
+  .hero__actions .button {
+    width: 100%;
+    justify-content: center;
+    min-height: 52px;
+  }
+
+  /* ── All section content to full-width ───────────────────────────────────── */
   .brand,
   .section-heading,
   .section-heading--between,
@@ -179,6 +295,7 @@
   .code-card,
   .bento-grid,
   .bento-card,
+  .bento-card--large,
   .project-card,
   .contact-panel > div,
   .table-wrapper {
@@ -189,42 +306,56 @@
     position: static;
   }
 
-  /* Flatten bento grid to single column */
+  /* ── Bento grid: single column flex ──────────────────────────────────────── */
   .bento-grid {
     display: flex;
     flex-direction: column;
+    gap: var(--gutter);
   }
 
   .bento-card {
     padding: var(--space-4);
+    width: 100%;
   }
 
   .tag-list {
     grid-column: auto;
   }
 
-  /* Project cards: single-column */
+  /* ── Project cards: single-column ────────────────────────────────────────── */
   .project-card {
     grid-column: 1 / -1;
     min-height: auto;
+    padding: var(--space-4);
   }
 
-  /* CTAs on mobile: full-width */
-  .hero__actions .button {
-    width: 100%;
-    justify-content: center;
+  /* ── Activity table: horizontal scroll on mobile ─────────────────────────── */
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .hero__actions .button::after {
-    display: none;
+  .archive-table {
+    min-width: 480px;
   }
 
-  /* Contact */
+  .archive-table th,
+  .archive-table td {
+    padding: var(--space-2);
+    font-size: var(--text-xs);
+  }
+
+  /* ── Contact panel ────────────────────────────────────────────────────────── */
   .contact-panel {
+    padding: var(--space-6) var(--space-4);
     align-items: start;
   }
 
-  /* Footer stacks vertically */
+  .contact-panel h2 {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+
+  /* ── Footer stacks vertically ────────────────────────────────────────────── */
   .footer-layout {
     flex-direction: column;
     align-items: flex-start;
@@ -235,51 +366,180 @@
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-2);
+    width: 100%;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  /* ── Modal ────────────────────────────────────────────────────────────────── */
+  .modal {
+    width: calc(100% - var(--space-4));
+    max-width: 100%;
+    border-radius: var(--border-radius);
+  }
+
+  .modal__dialog {
+    padding: var(--space-4);
+  }
+
+  .modal__body p {
+    font-size: var(--text-base);
   }
 }
 
 
 /* =============================================================================
-   5. ≤ 460px — Small mobile: Tighten stats strip
+   7. ≤ 540px — Small phones: Extra tightening
    ============================================================================= */
-@media (max-width: 460px) {
-  /* Stats strip: collapse to single column on very small screens */
+@media (max-width: 540px) {
+  :root {
+    --section-pad: var(--space-8);
+  }
+
+  /* ── Hero ─────────────────────────────────────────────────────────────────── */
+  .hero h1 {
+    font-size: clamp(2.5rem, 16vw, 3.5rem);
+    letter-spacing: -0.04em;
+  }
+
+  .hero__content {
+    padding: var(--space-6) 0 var(--space-5);
+  }
+
+  /* ── Section titles ───────────────────────────────────────────────────────── */
+  h2 {
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
+  }
+
+  /* ── Contact: full-width email button ────────────────────────────────────── */
+  .contact-panel .button--primary {
+    width: 100%;
+    justify-content: center;
+    padding-left: var(--space-4) !important;
+    padding-right: var(--space-4) !important;
+  }
+
+  /* ── Social links: wrap nicely ───────────────────────────────────────────── */
+  .contact-panel .button--ghost {
+    flex: 1 1 auto;
+    min-width: 100px;
+    justify-content: center;
+  }
+
+  /* ── Bento cards a touch tighter ────────────────────────────────────────── */
+  .bento-card {
+    padding: var(--space-3);
+  }
+
+  /* ── Project cards ────────────────────────────────────────────────────────── */
+  .project-card {
+    padding: var(--space-3);
+  }
+
+  /* Brand name: prevent overflow */
+  .brand span:not(.brand__mark) {
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Modal even tighter */
+  .modal__dialog {
+    padding: var(--space-3);
+  }
+}
+
+
+/* =============================================================================
+   8. ≤ 400px — Very small phones (iPhone SE etc.)
+   ============================================================================= */
+@media (max-width: 400px) {
+  :root {
+    --gutter: 8px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.25rem, 17vw, 3rem);
+  }
+
+  h2 {
+    font-size: clamp(1.6rem, 10vw, 2rem);
+  }
+
+  h3 {
+    font-size: clamp(1rem, 5vw, 1.25rem);
+  }
+
+  .bento-card {
+    padding: var(--space-3);
+    border-radius: 8px;
+  }
+
+  .project-card {
+    padding: var(--space-3);
+    border-radius: 8px;
+  }
+
+  .button {
+    font-size: var(--text-xs);
+    min-height: 44px;
+    padding: 0 var(--space-3);
+  }
+
+  /* Compress table columns */
+  .archive-table th,
+  .archive-table td {
+    padding: 10px var(--space-1);
+  }
+
+  /* Nav: hide brand text, show only mark */
+  .brand span:not(.brand__mark) {
+    display: none;
+  }
+
+  .nav__toggle {
+    grid-column: 10 / span 3;
+  }
+
+  .theme-toggle {
+    grid-column: 8 / span 2;
+  }
+}
+
+
+/* =============================================================================
+   9. Stats strip responsive
+   ============================================================================= */
+@media (max-width: 720px) {
+  .stats-strip {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: var(--space-6);
+  }
+}
+
+@media (max-width: 400px) {
   .stats-strip {
     grid-template-columns: 1fr;
   }
 
   .stats-strip li {
     border-right: none;
-    border-bottom: var(--border-light);
+    border-bottom: var(--border);
     padding: var(--space-3);
   }
 
   .stats-strip li:last-child {
     border-bottom: none;
   }
-
-  /* Brand name truncation */
-  .brand span:not(.brand__mark) {
-    max-width: 140px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  /* Reduce modal padding */
-  .modal__dialog {
-    padding: var(--space-3);
-  }
-
-  /* Tighter section headings */
-  h2 {
-    font-size: clamp(1.75rem, 9vw, 2.5rem);
-  }
 }
 
 
 /* =============================================================================
-   6. Print Styles
+   10. Print Styles
    ============================================================================= */
 @media print {
   /* Remove interactive elements */
@@ -305,7 +565,6 @@
     color: #000 !important;
   }
 
-  /* Remove borders that don't print well */
   .site-footer {
     background: #fff !important;
   }

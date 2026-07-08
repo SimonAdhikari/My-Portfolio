@@ -399,6 +399,7 @@ a:focus:not(:focus-visible) {
   justify-self: end;
   width: 44px;
   height: 44px;
+  min-width: 44px; /* ensure tap target */
   border: var(--border);
   background: transparent;
   cursor: pointer;
@@ -504,7 +505,7 @@ body.nav-open .nav__menu {
 /* Section heading — sits in left columns of the 12-col grid */
 .section-heading {
   grid-column: 1 / span 5;
-  max-width: 520px;
+  max-width: min(520px, 100%);
 }
 
 /* Full-width heading variant (used in projects section) */
