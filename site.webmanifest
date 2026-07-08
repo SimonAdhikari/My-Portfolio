@@ -1,11 +1,16 @@
 {
-  "name": "Simon Adhikari — Cybersecurity Portfolio",
+  "name": "Simon Adhikari — Cybersecurity & Networking Engineer",
   "short_name": "Simon Adhikari",
-  "description": "A Swiss-style portfolio for security-minded code, network fundamentals, and practical learning projects.",
+  "description": "Portfolio of Simon Adhikari, a Cybersecurity & Networking Engineer based in Kathmandu, Nepal. Featuring security projects, network architecture, and systems programming.",
   "start_url": "/",
+  "scope": "/",
   "display": "minimal-ui",
+  "orientation": "portrait-primary",
   "background_color": "#f5f5f1",
   "theme_color": "#0a0a0a",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["portfolio", "technology", "security", "education"],
   "icons": [
     {
       "src": "favicon.svg",
