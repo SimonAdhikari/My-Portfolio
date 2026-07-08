@@ -2,13 +2,20 @@
 <html lang="en">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WHELKLDJ5B"></script>
+  <!-- Google Analytics — deferred 3s to not block first paint -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WHELKLDJ5B');
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WHELKLDJ5B';
+        s.async = true;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WHELKLDJ5B', { 'send_page_view': true });
+      }, 3000);
+    });
   </script>
 
   <meta charset="UTF-8">
@@ -67,12 +74,22 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="site.webmanifest">
 
-  <!-- ── Resource Hints (performance + AEO crawler speed) ─────────────────── -->
+  <!-- ── Resource Hints ─────────────────────────────────────────────────── -->
+  <!-- Font preconnects (crossorigin required for font files from gstatic) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://github.com">
   <link rel="dns-prefetch" href="https://www.linkedin.com">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+  <!-- ── Google Fonts — non-render-blocking load ──────────────────────────── -->
+  <!-- media="print" + onload trick: browser fetches without blocking render -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Inter:ital,opsz,wght@0,14..32,400..800;1,14..32,400..800&display=swap"
+    media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Inter:ital,opsz,wght@0,14..32,400..800;1,14..32,400..800&display=swap">
+  </noscript>
 
   <!-- ── Stylesheets ───────────────────────────────────────────────────────── -->
   <link rel="stylesheet" href="css/style.css">
@@ -336,8 +353,58 @@
   <!-- Skip to content — keyboard accessibility -->
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- Navigation (loaded via JS component system) -->
-  <div data-component="navbar"></div>
+  <!-- Navigation — inlined for zero-fetch first paint -->
+  <header class="site-header">
+    <nav class="container grid-12 nav" aria-label="Primary navigation">
+
+      <!-- Brand logo -->
+      <a class="brand" href="#home" aria-label="Simon Adhikari — back to top">
+        <span class="brand__mark" aria-hidden="true">SA</span>
+        <span>Simon Adhikari</span>
+      </a>
+
+      <!-- Desktop navigation links (shown at ≥ 1024px via CSS) -->
+      <div class="nav__links" role="navigation" aria-label="Desktop navigation">
+        <a href="#about">Profile</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Arsenal</a>
+        <a href="#activity">Activity</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <!-- Theme Toggle -->
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode" style="grid-column: 11; justify-self: end; background: transparent; border: none; cursor: pointer; color: var(--color-ink); display: flex; align-items: center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+
+      <!-- Mobile hamburger toggle (hidden at ≥ 1024px via CSS) -->
+      <button
+        class="nav__toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-menu"
+        aria-label="Toggle navigation menu"
+      >
+        <span class="nav__toggle-icon" aria-hidden="true">
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+        </span>
+      </button>
+
+      <!-- Mobile dropdown menu -->
+      <ul class="nav__menu" id="primary-menu" role="list" aria-label="Mobile navigation">
+        <li><a href="#about">Profile</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Arsenal</a></li>
+        <li><a href="#activity">Activity</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+    </nav>
+  </header>
 
   <main id="main">
 
@@ -369,24 +436,6 @@
           <span class="index-subtitle">Technology</span>
         </div>
       </div>
-      <style>
-        @keyframes pulse {
-          0% {
-            transform: scale(0.95);
-            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-          }
-
-          70% {
-            transform: scale(1);
-            box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
-          }
-
-          100% {
-            transform: scale(0.95);
-            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-          }
-        }
-      </style>
     </section>
 
     <!-- ── 02 · Career Path (Bento Box) ─────────────────────────────────────── -->
@@ -401,10 +450,9 @@
           <!-- Experience -->
           <article class="bento-card" itemscope itemtype="https://schema.org/OrganizationRole">
             <h3>Experience</h3>
-            <p><strong itemprop="roleName">Cybersecurity Intern</strong></p>
-            <p style="color: var(--color-muted); font-size: var(--text-sm);">[Company Name] — [Year] to Present</p>
-            <p style="margin-top: var(--space-2);" itemprop="description">Assisted in network auditing, vulnerability assessments, and
-              strengthening security baselines.</p>
+            <p><strong itemprop="roleName">Seeking Cybersecurity Internship</strong></p>
+            <p style="color: var(--color-muted); font-size: var(--text-sm);">Available Immediately</p>
+            <p style="margin-top: var(--space-2);" itemprop="description">I am actively looking for an internship opportunity in cybersecurity or network technology to apply my skills and learn from industry professionals.</p>
           </article>
 
           <!-- Cafe / Barista -->
@@ -414,7 +462,7 @@
             <p style="color: var(--color-muted); font-size: var(--text-sm);">S.S CAFE &amp; VIEW POINT</p>
             <p style="margin-top: var(--space-2);" itemprop="description">Managing operations, crafting quality coffee, and providing excellent hospitality.</p>
             <div style="margin-top: var(--space-3); border-radius: var(--border-radius); overflow: hidden; height: 180px;">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14124.721726903594!2d85.34685842208853!3d27.742580267176162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1b0020bafe43%3A0x7779cf7dddc5dcfa!2sS.S%20CAFE%20%26%20VIEW%20POINT!5e0!3m2!1sen!2snp!4v1783487970804!5m2!1sen!2snp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14124.721726903594!2d85.34685842208853!3d27.742580267176162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1b0020bafe43%3A0x7779cf7dddc5dcfa!2sS.S%20CAFE%20%26%20VIEW%20POINT!5e0!3m2!1sen!2snp!4v1783487970804!5m2!1sen!2snp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="S.S CAFE &amp; VIEW POINT location on Google Maps"></iframe>
             </div>
           </article>
 
@@ -629,11 +677,82 @@
 
   </main>
 
-  <!-- Footer (loaded via JS component system) -->
-  <div data-component="footer"></div>
+  <!-- Footer — inlined for zero-fetch rendering -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container grid-12">
+      <div class="footer-layout">
 
-  <!-- Project detail modal (loaded via JS component system) -->
-  <div data-component="modal"></div>
+        <!-- Brand identity -->
+        <a class="footer-brand" href="#home" aria-label="Simon Adhikari — back to top">
+          <span class="footer-brand__mark" aria-hidden="true">SA</span>
+          <span>Simon Adhikari</span>
+        </a>
+
+        <!-- Meta: copyright + links -->
+        <div class="footer-meta">
+          <p>&copy; <span data-current-year>2026</span> Simon Adhikari. All rights reserved.</p>
+          <nav class="footer-links" aria-label="Footer links">
+            <a href="https://www.linkedin.com/in/simon-adhikari-8103a2275/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.facebook.com/simon.adhikari.157838" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://www.instagram.com/simonadhikari718/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://github.com/simonadhikari" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="#contact">Contact</a>
+            <a href="#home" class="link-arrow link-arrow--up">Top</a>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Project detail modal — inlined for zero-fetch rendering -->
+  <dialog class="modal" id="project-modal" aria-labelledby="modal-title" aria-modal="true">
+    <div class="modal__dialog">
+
+      <!-- Header: type label + close button -->
+      <div class="modal__header">
+        <div class="modal__header-content">
+          <p class="eyebrow" data-modal-type></p>
+          <h2 id="modal-title" data-modal-title></h2>
+        </div>
+        <form method="dialog">
+          <!-- autofocus ensures keyboard focus lands here when modal opens -->
+          <button
+            class="modal__close"
+            type="submit"
+            aria-label="Close project details"
+            autofocus
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Body: description -->
+      <div class="modal__body">
+        <p data-modal-description class="text-lead"></p>
+      </div>
+
+      <!-- Tags -->
+      <div class="tag-list mt-space-4" data-modal-tags aria-label="Technologies used"></div>
+
+      <!-- Footer: action links -->
+      <div class="modal__footer">
+        <a
+          class="button button--outline button--sm"
+          href="#"
+          data-modal-link
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View project on GitHub"
+        >View on GitHub</a>
+      </div>
+
+    </div>
+  </dialog>
 
 </body>
 

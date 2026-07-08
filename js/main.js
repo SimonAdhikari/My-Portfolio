@@ -3,36 +3,11 @@
  * Simon Adhikari Portfolio
  */
 
-/** Map of data-component names to their HTML partial paths */
-const COMPONENT_MAP = {
-  navbar: "/components/navbar.html",
-  footer: "/components/footer.html",
-  modal:  "/components/modal.html",
-};
-
 /**
- * Fetch and inject all [data-component] placeholders in the DOM.
- * Dispatches "components:ready" when all partials are loaded.
+ * Initialize components
+ * Dispatches "components:ready" when initialized.
  */
-async function loadComponents() {
-  const outlets = document.querySelectorAll("[data-component]");
-
-  await Promise.all(
-    Array.from(outlets).map(async (outlet) => {
-      const name = outlet.dataset.component;
-      const path = COMPONENT_MAP[name];
-      if (!path) return;
-
-      try {
-        const res = await fetch(path);
-        if (!res.ok) throw new Error(`Failed to load component: ${path} (${res.status})`);
-        outlet.innerHTML = await res.text();
-      } catch (err) {
-        console.warn("[components]", err.message);
-      }
-    })
-  );
-
+function loadComponents() {
   setupNavigation();
   setupThemeToggle();
   setCurrentYear();
