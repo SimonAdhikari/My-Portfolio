@@ -1,5 +1,12 @@
 # robots.txt — simonadhikari.com
-# Generated: 2026-07-08
+# Generated: 2026-07-22
+# Last Updated: 2026-07-22
+# Purpose: Control search engine crawling and AI training opt-out
+#
+# Submit to search engines:
+# - Google: https://search.google.com/search-console
+# - Bing: https://www.bing.com/webmasters
+# - Yandex: https://webmaster.yandex.com
 
 # ── Allow all well-behaved crawlers ─────────────────────────────────────────
 User-agent: *
@@ -16,29 +23,203 @@ User-agent: Googlebot
 Allow: /
 Disallow: /components/
 
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /components/
+
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
 # ── Bing-specific crawler hints ──────────────────────────────────────────────
 User-agent: Bingbot
 Allow: /
 Disallow: /components/
 
-# ── Block AI training crawlers (opt-out) ────────────────────────────────────
+User-agent: bingbot
+Allow: /
+Disallow: /components/
+
+# ── AI Training Opt-Out (Block AI crawlers from training on content) ───────
+#
+# These crawlers are blocked from using content for AI model training.
+# This is an opt-out request - crawlers should respect robots.txt directives.
+
+# OpenAI (ChatGPT, DALL-E, etc.)
 User-agent: GPTBot
 Disallow: /
 
-User-agent: Google-Extended
-Allow: /
+User-agent: ChatGPT-User
+Disallow: /
 
-User-agent: PerplexityBot
-Allow: /
+User-agent: GPT-5
+Disallow: /
 
-User-agent: YouBot
-Allow: /
-
+# Anthropic (Claude)
 User-agent: anthropic-ai
-Allow: /
+Disallow: /
 
 User-agent: Claude-Web
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+# Google DeepMind / Gemini
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Gemini-Propeller
+Disallow: /
+
+User-agent: Gemini/2.0
+Disallow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Perplexity-Health
+Disallow: /
+
+# Common Crawl (used for AI training)
+User-agent: CCBot
+Disallow: /
+
+User-agent: comet-risk
+Disallow: /
+
+# Apple (AI training)
+User-agent: Applebot-Extended
+Disallow: /
+
+# Meta / Facebook AI
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: FacebookBot
 Allow: /
+
+# Amazon (AI training)
+User-agent: Amazonbot
+Disallow: /
+
+# Cohere AI
+User-agent: Cohere-Platform
+Disallow: /
+
+User-agent: cohere-ai-crawler
+Disallow: /
+
+# Mistral AI
+User-agent: Mistral-User
+Disallow: /
+
+# DeepSeek AI
+User-agent: Deepseek
+Disallow: /
+
+# xAI (Grok)
+User-agent: Grok
+Disallow: /
+
+User-agent: xai-crawler
+Disallow: /
+
+# You.com
+User-agent: YouBot
+Disallow: /
+
+# DuckDuckGo AI
+User-agent: DuckDuckBot
+Allow: /
+
+# Stability AI
+User-agent: StableBot
+Disallow: /
+
+# Other AI crawlers
+User-agent: Bytespider
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: diffbot
+Disallow: /
+
+User-agent: facebot
+Disallow: /
+
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: twingly
+Disallow: /
+
+User-agent: SMTBot
+Disallow: /
+
+User-agent: AwarioBot
+Disallow: /
+
+User-agent: Flipboard
+Disallow: /
+
+User-agent: neural networks crawler
+Disallow: /
+
+User-agent: AI2Bot
+Disallow: /
+
+User-agent: AiDBot
+Disallow: /
+
+User-agent: proo-player-bot
+Disallow: /
+
+User-agent: petal-bot
+Disallow: /
+
+User-agent: Songle
+Disallow: /
+
+User-agent: Scrapy
+Disallow: /
+
+User-agent: curl
+Disallow: /
+
+User-agent: python-requests
+Disallow: /
+
+User-agent: Go-http-client
+Disallow: /
+
+User-agent: HttpClient
+Disallow: /
+
+User-agent: Java
+Disallow: /
+
+User-agent: libwww-perl
+Disallow: /
+
+User-agent: lwp-trivial
+Disallow: /
+
+User-agent: Wget
+Disallow: /
 
 # ── Sitemaps ────────────────────────────────────────────────────────────────
 Sitemap: https://simonadhikari.com/sitemap.xml
+Sitemap: https://simonadhikari.com/sitemap.xml?type=video
+Sitemap: https://simonadhikari.com/sitemap.xml?type=news
+
+# ── Crawl-delay for polite crawlers ─────────────────────────────────────────
+Crawl-delay: 1

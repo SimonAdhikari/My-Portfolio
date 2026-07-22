@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap for simonadhikari.com
+  Last Updated: 2026-07-22
+  Generator: Simon Adhikari Portfolio SEO Optimization
+  
+  This sitemap helps search engines discover and index all public pages.
+  For best results, submit this sitemap to:
+  - Google Search Console: https://search.google.com/search-console
+  - Bing Webmaster Tools: https://www.bing.com/webmasters
+  - Yandex Webmaster: https://webmaster.yandex.com
+-->
 <urlset
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
   xsi:schemaLocation="
     http://www.sitemaps.org/schemas/sitemap/0.9
     http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
     http://www.google.com/schemas/sitemap-image/1.1
-    http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+    http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd
+    http://www.google.com/schemas/sitemap-video/1.1
+    http://www.google.com/schemas/sitemap-video/1.1/sitemap-video.xsd">
 
-  <!-- ── Homepage ──────────────────────────────────────────────────────────── -->
+  <!-- ── Homepage (highest priority) ─────────────────────────────────────── -->
   <url>
     <loc>https://simonadhikari.com/</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://simonadhikari.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://simonadhikari.com/"/>
     <image:image>
       <image:loc>https://simonadhikari.com/og-image.jpg</image:loc>
       <image:title>Simon Adhikari — Cyber Security Student Portfolio</image:title>
@@ -22,47 +39,64 @@
     </image:image>
   </url>
 
-  <!-- ── Section anchors (helps crawlers understand page structure) ─────────── -->
+  <!-- ── About Section ────────────────────────────────────────────────────── -->
   <url>
     <loc>https://simonadhikari.com/#about</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://simonadhikari.com/#about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://simonadhikari.com/#about"/>
   </url>
 
+  <!-- ── Projects Section (high priority - main content) ─────────────────── -->
   <url>
     <loc>https://simonadhikari.com/#projects</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://simonadhikari.com/#projects"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://simonadhikari.com/#projects"/>
   </url>
 
+  <!-- ── Skills Section ───────────────────────────────────────────────────── -->
   <url>
     <loc>https://simonadhikari.com/#skills</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://simonadhikari.com/#skills"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://simonadhikari.com/#skills"/>
   </url>
 
+  <!-- ── Activity Section ─────────────────────────────────────────────────── -->
   <url>
     <loc>https://simonadhikari.com/#activity</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://simonadhikari.com/#activity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://simonadhikari.com/#activity"/>
   </url>
 
+  <!-- ── FAQ Section (important for AEO) ──────────────────────────────────── -->
   <url>
     <loc>https://simonadhikari.com/#faq</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://simonadhikari.com/#faq"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://simonadhikari.com/#faq"/>
   </url>
 
+  <!-- ── Contact Section ──────────────────────────────────────────────────── -->
   <url>
     <loc>https://simonadhikari.com/#contact</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://simonadhikari.com/#contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://simonadhikari.com/#contact"/>
   </url>
 
 </urlset>
