@@ -373,7 +373,7 @@
       </div>
 
       <!-- Theme Toggle -->
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode" style="grid-column: 11; justify-self: end; background: transparent; border: none; cursor: pointer; color: var(--color-ink); display: flex; align-items: center;">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode" aria-pressed="false" style="grid-column: 11; justify-self: end; background: transparent; border: none; cursor: pointer; color: var(--color-ink); display: flex; align-items: center;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
@@ -395,7 +395,7 @@
       </button>
 
       <!-- Mobile dropdown menu -->
-      <ul class="nav__menu" id="primary-menu" role="list" aria-label="Mobile navigation">
+      <ul class="nav__menu" id="primary-menu" role="list" aria-label="Mobile navigation" aria-hidden="true">
         <li><a href="#about">Profile</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Arsenal</a></li>

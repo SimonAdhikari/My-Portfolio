@@ -1,0 +1,68 @@
+# ===========================================
+# AI Agent & Claude Code
+# ===========================================
+.claude/
+.claude/settings.json
+.claude/commands/
+.claude/plugins/
+.claude/logs/
+.claude/tasks/
+
+# Claude project memory
+/memories/
+
+# Agent working directories
+.agents/
+.workflows/
+
+# ===========================================
+# Gemini / Google AI
+# ===========================================
+.gemini/
+gemini-*.json
+
+# ===========================================
+# General Development
+# ===========================================
+node_modules/
+dist/
+build/
+*.log
+.DS_Store
+Thumbs.db
+
+# ===========================================
+# Environment & Secrets
+# ===========================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ===========================================
+# IDE & Editor
+# ===========================================
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+.idea/
+*.swp
+*.swo
+*~
+
+# ===========================================
+# Testing & Coverage
+# ===========================================
+coverage/
+.nyc_output/
+*.lcov
+
+# ===========================================
+# Build Artifacts
+# ===========================================
+*.o
+*.obj
+*.dll
+*.exe
+*.dylib

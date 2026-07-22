@@ -18,6 +18,7 @@
   --color-surface:        #f4f4f2;   /* Alternate section background             */
   --color-surface-hover:  #ebebea;   /* Hover states                             */
   --color-line:           #e2e2df;   /* Light, elegant dividers                  */
+  --color-line-light:       #eeeeec;   /* Subtle dividers (lighter than --color-line) */
   --color-line-strong:    #111110;   /* Strong borders                           */
   --color-overlay:        rgba(253, 253, 252, 0.85); /* Glassmorphism bg         */
 
@@ -98,6 +99,7 @@
   --color-surface:        #141414;
   --color-surface-hover:  #1e1e1d;
   --color-line:           #2a2a28;
+  --color-line-light:       #1e1e1d;
   --color-line-strong:    #4a4a46;
   --color-overlay:        rgba(10, 10, 10, 0.85);
   --shadow-sm:            0 2px 8px rgba(0,0,0,0.4);

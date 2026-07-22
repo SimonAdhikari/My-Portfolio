@@ -33,6 +33,7 @@ function setupNavigation() {
   function openMenu() {
     document.body.classList.add("nav-open");
     toggle.setAttribute("aria-expanded", "true");
+    menu.setAttribute("aria-hidden", "false");
     // Move keyboard focus to first menu item
     const firstLink = menu.querySelector("a");
     if (firstLink) firstLink.focus();
@@ -41,6 +42,7 @@ function setupNavigation() {
   function closeMenu() {
     document.body.classList.remove("nav-open");
     toggle.setAttribute("aria-expanded", "false");
+    menu.setAttribute("aria-hidden", "true");
   }
 
   /** Toggle on hamburger click */
@@ -136,6 +138,11 @@ function setupThemeToggle() {
   
   if (currentTheme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
+    toggleBtn.setAttribute('aria-pressed', 'true');
+    toggleBtn.setAttribute('aria-label', 'Toggle Light Mode');
+  } else {
+    toggleBtn.setAttribute('aria-pressed', 'false');
+    toggleBtn.setAttribute('aria-label', 'Toggle Dark Mode');
   }
 
   toggleBtn.addEventListener('click', () => {
@@ -143,9 +150,13 @@ function setupThemeToggle() {
     if (isDark) {
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem('theme', 'light');
+      toggleBtn.setAttribute('aria-pressed', 'false');
+      toggleBtn.setAttribute('aria-label', 'Toggle Dark Mode');
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('theme', 'dark');
+      toggleBtn.setAttribute('aria-pressed', 'true');
+      toggleBtn.setAttribute('aria-label', 'Toggle Light Mode');
     }
   });
 }
