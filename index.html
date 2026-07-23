@@ -20,6 +20,19 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ── Theme Initialization (inline to prevent FOUC) ───────────────────── -->
+  <script>
+    (function() {
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = saved || (prefersDark ? 'dark' : 'light');
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="msvalidate.01" content="945B39E20D268D90866B464B3C70ACEF">
   <meta name="yandex-verification" content="42ea2266a870b042">
@@ -359,6 +372,15 @@
 </head>
 
 <body itemscope itemtype="https://schema.org/WebPage">
+
+  <!-- ── Page Loader ──────────────────────────────────────────────────────────── -->
+  <div class="loader" id="page-loader" aria-label="Loading page" role="status">
+    <div class="loader__inner">
+      <span class="loader__brand" aria-hidden="true">SA</span>
+      <div class="loader__spinner" aria-hidden="true"></div>
+    </div>
+  </div>
+
   <!-- Skip to content — keyboard accessibility -->
   <a class="skip-link" href="#main">Skip to main content</a>
 
